@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Sayangku</title>
+    <style>
+        body { background-color: #fce4ec; font-family: 'Segoe UI', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .container { text-align: center; background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 85%; max-width: 350px; border: 2px solid #ff85a2; }
+        img { width: 140px; height: 140px; margin-bottom: 15px; border-radius: 15px; }
+        p { font-size: 15px; color: #444; line-height: 1.6; min-height: 90px; margin-bottom: 20px; }
+        button { background: #ff85a2; color: white; border: none; padding: 15px; border-radius: 25px; cursor: pointer; font-weight: bold; width: 100%; box-shadow: 0 4px 10px rgba(255,133,162,0.3); transition: 0.2s; }
+        button:active { transform: scale(0.95); }
+        #hal { font-size: 11px; margin-top: 15px; color: #cc8b9c; letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+    <audio id="musik" loop preload="auto">
+        <source src="https://files.catbox.moe/k3i7x3.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <img id="gambar" src="https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f431/u1f431_u1f49d.png">
+        <p id="teks"><b>Halo Sayang...</b><br><br>Klik tombol di bawah untuk mulai musik dan baca pesannya ya ❤️</p>
+        <button id="btn" onclick="mulai()">Klik untuk Mulai Musik & Pesan</button>
+        <div id="hal">Pesan Spesial</div>
+    </div>
+
+    <script>
+        let n = 0;
+        const pesan = [
+            "hallo sayaanggkuu... akuu mau mintaa maaff bangett soalnya tadi, maaf klo ada kata² yang kurang enak, aku lagii bingung lagi kacau fikiranku...",
+            "harusnya aku bisa ngontrol itu, maaf yaa malah bikin km ngerasa ga nyaman. sebenernya aku ngerasa kurang dianggep ajaa seng sm km...",
+            "maaf yaa kyk butuh validasi bngt dari km, setelah debat tadi aku ngerasa kyk di sepelein aja sihh seng...",
+            "dan ketika aku mencoba marah dengan cuek ke km pun, km biasa aja dan malah kadang km bercandain, sebemernya gapapa cm aku ngerasa kyk di sepelein...",
+            "aku tau aku gampang di bujuknya, km cm manggil 'sayangkuu' gt aja aku dah ga bisa buat cuek lgi...",
+            "soal keluar bertiga tadi, sebenernya aku gpp, cm gimna ya jeles itu pasti ada, siapapun pasti juga jeles, km pun pasti klo diposisiku juga jeles...",
+            "aku juga sadar diri seng aku ya belum bisa buat kyk cwo² lain, maaf klo aku bilang gnii teruss, akuu selalu ngerasa bersalah karna ituu...",
+            "aku makin bingung dan agak ragu apa bener cm aku aja yang bener² sayaangg dan takut kehilangan km...",
+            "aku sayang dan tulus sm km, mungkin klo km juga ngerasa kyk gtu tpi masih gengsi, atau aku yang terlalu pd wkwkw...",
+            "aku inget km bilang cwo special itu yang berani dateng ke orang tua... aku sadar aku belum bisa kesana, makanya aku ngerasa aku belum special buat kamu...",
+            "akuu lgi ga percaya diri, ga pd, lgi gaa bisa berfikir jernih. maaff klo aku mikir gtu, harusnya aku bisa ngendaliin itu biar ga mikir jauh...",
+            "tapi aku agak tenang setelah ngetik ini, aku mauu teruss sm km ga mau kehilangan kamu, akuu sayaangg kamuu...",
+            "aku harap kita bisa bareng terus saling memahami, jadi pasangan di masa depan. aku selalu berdoa ingin berjodoh sm km...",
+            "klo nnt aku bukan jodoh km, aku harap aku masih bisa ngehabisin waktu bareng sm km sampe kita nemuin jodoh masing-masing. terimakasih yaa seng udah mau baca sampe abiss...",
+            "i lovee uuu moree sayaanggkuu, lovee loveee banyakkkk! 💗💗💗"
+        ];
+
+        const imgs = [
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f62d/u1f62d_u1f494.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f614/u1f614_u2601.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f97a/u1f97a_u1f4ab.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f611/u1f611_u1f4ac.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f970/u1f970_u1f338.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f621/u1f621_u1f494.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f614/u1f614_u1f494.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f62b/u1f62b_u1f494.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f496/u1f496_u2728.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f614/u1f614_u1f319.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f925/u1f925_u1f62d.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f43b/u1f43b_u1f496.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f48f/u1f48f_u1f3fb.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f64f/u1f64f_u1f3fb_u1f338.png",
+            "https://www.gstatic.com/android/keyboard/emojikitchen/20201001/u1f970/u1f970_u1f496.png"
+        ];
+
+        function mulai() {
+            const m = document.getElementById('musik');
+            // Paksa putar musik
+            m.play().then(() => {
+                console.log("Audio playing");
+            }).catch(e => {
+                console.log("Audio failed", e);
+            });
+            
+            // Lanjut ke pesan pertama
+            tampilkanPesan();
+        }
+
+        function tampilkanPesan() {
+            if (n < pesan.length) {
+                document.getElementById('teks').innerHTML = pesan[n];
+                document.getElementById('gambar').src = imgs[n];
+                document.getElementById('hal').innerHTML = (n + 1) + " / " + pesan.length;
+                document.getElementById('btn').innerHTML = "Lanjut →";
+                document.getElementById('btn').onclick = tampilkanPesan;
+                n++;
+            } else {
+                const wa = "628123456789"; // GANTI NOMOR KAMU DISINI
+                const t = "Aku udah baca semuanya sayang... Maafin aku juga ya ❤️";
+                window.location.href = "https://wa.me/" + wa + "?text=" + encodeURIComponent(t);
+            }
+        }
+    </script>
+</body>
+</html>
